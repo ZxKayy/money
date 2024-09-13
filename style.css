@@ -1,20 +1,64 @@
-body {
+/* Reset de margens e preenchimentos */
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+header {
+    background-color: #3a3a3a;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+main {
+    padding: 20px;
+}
+
+.games-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.game-card {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
     overflow: hidden;
-    background: #87CEEB; /* Céu azul */
+    width: 150px;
+    text-align: center;
 }
 
-#gameArea {
-    position: relative;
-    width: 100vw;
-    height: 100vh;
+.game-card img {
+    width: 100%;
+    height: auto;
 }
 
-.block {
-    width: 50px;
-    height: 50px;
-    position: absolute;
-    background: #8B4513; /* Cor marrom para o bloco */
-    border: 1px solid #000; /* Borda preta */
+.game-card h2 {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.game-card p {
+    font-size: 14px;
+    color: #666;
+}
+
+footer {
+    background-color: #3a3a3a;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
 }
