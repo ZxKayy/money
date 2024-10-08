@@ -12,8 +12,10 @@
         button { width: 100%; padding: 10px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer; }
         button:hover { background-color: #45a049; }
         .qr-code { text-align: center; margin: 20px 0; }
-        .ebook-info { margin-top: 20px; text-align: justify; }
-        ul { margin-left: 20px; }
+        .game { text-align: center; margin-top: 20px; }
+        .letters { display: flex; justify-content: center; margin-top: 10px; }
+        .letter { margin: 0 5px; padding: 10px; background-color: #f1f1f1; border: 1px solid #ccc; border-radius: 5px; cursor: pointer; }
+        .result { margin-top: 20px; }
     </style>
 </head>
 <body>
@@ -38,49 +40,13 @@
         <button onclick="carregarPagamento()">Pagar</button>
     </div>
 
-    <div id="ebook" class="container">
-        <h1>Entendendo o Autismo</h1>
-        <div class="ebook-info">
-            <p>O autismo, também conhecido como Transtorno do Espectro Autista (TEA), é um transtorno do desenvolvimento que afeta a comunicação, o comportamento e a interação social. As características do autismo podem variar amplamente entre os indivíduos, e a compreensão do espectro é fundamental para proporcionar o apoio adequado.</p>
-            
-            <h2>Características do Autismo</h2>
-            <p>As pessoas com autismo podem apresentar uma variedade de comportamentos e habilidades. Algumas características comuns incluem:</p>
-            <ul>
-                <li>Desafios na comunicação verbal e não verbal.</li>
-                <li>Dificuldade em compreender e usar a linguagem corporal.</li>
-                <li>Interesses intensos em tópicos específicos, que podem levar a um conhecimento profundo nessas áreas.</li>
-                <li>Comportamentos repetitivos ou rituais, como movimentos estereotipados ou rotinas diárias rígidas.</li>
-                <li>Hipersensibilidade ou hipossensibilidade a estímulos sensoriais, como luz, som e toques.</li>
-            </ul>
-
-            <h2>Diagnóstico e Intervenção</h2>
-            <p>O diagnóstico do autismo geralmente é feito por profissionais de saúde mental, que avaliam o desenvolvimento da criança e a presença de comportamentos típicos do espectro. A intervenção precoce é crucial e pode incluir terapia comportamental, terapia ocupacional e suporte educacional. O objetivo é ajudar a criança a desenvolver habilidades sociais e de comunicação.</p>
-
-            <h2>Como Lidar com o Autista</h2>
-            <p>É importante adotar abordagens que ajudem a criança a se sentir compreendida e apoiada. Algumas dicas incluem:</p>
-            <ul>
-                <li>Utilizar linguagem clara e direta.</li>
-                <li>Criar um ambiente estruturado com rotinas previsíveis.</li>
-                <li>Ser empático e paciente nas interações.</li>
-            </ul>
-
-            <h2>Educação e Inclusão</h2>
-            <p>A inclusão de estudantes autistas nas escolas é vital para seu desenvolvimento. Métodos pedagógicos adaptados, como o uso de recursos visuais e tecnologias assistivas, podem facilitar o aprendizado. Além disso, promover a empatia e a compreensão entre os colegas é essencial para criar um ambiente escolar acolhedor.</p>
-            <p>Algumas práticas eficazes incluem:</p>
-            <ul>
-                <li>Implementar salas de recursos com profissionais capacitados.</li>
-                <li>Utilizar materiais didáticos que atendam diferentes estilos de aprendizado.</li>
-                <li>Fomentar atividades em grupo que incentivem a socialização e a colaboração.</li>
-            </ul>
-
-            <h2>Apoio Familiar e Comunitário</h2>
-            <p>As famílias desempenham um papel fundamental no suporte a indivíduos autistas. Informar-se sobre o transtorno e buscar redes de apoio pode ajudar a enfrentar os desafios. Grupos de apoio e comunidades online oferecem um espaço para troca de experiências e recursos.</p>
-
-            <h2>Perspectivas Futuras</h2>
-            <p>À medida que a pesquisa sobre o autismo avança, novas abordagens para intervenção e suporte continuam a surgir. A conscientização e a educação são essenciais para desestigmatizar o autismo e promover a aceitação. O objetivo é garantir que todas as pessoas, independentemente de suas diferenças, tenham oportunidades iguais de participação e desenvolvimento.</p>
-            
-            <h2>Conclusão</h2>
-            <p>Entender o autismo é um passo importante para a construção de uma sociedade inclusiva. Cada pessoa no espectro traz uma contribuição única ao mundo, e é responsabilidade de todos nós criar um ambiente que valorize a diversidade e promova o respeito.</p>
+    <div id="game" class="container">
+        <h1>Jogo de Adivinhação de Palavras</h1>
+        <div class="game">
+            <p>Complete a palavra: <span id="word-to-complete"></span></p>
+            <div class="letters" id="letter-options"></div>
+            <div class="result" id="result"></div>
+            <button onclick="startGame()">Começar Jogo</button>
         </div>
     </div>
 
@@ -89,7 +55,6 @@
         document.getElementById('login').style.display = 'block';
 
         function showPayment() {
-            // Esconde a página de login e mostra a de pagamento
             document.getElementById('login').style.display = 'none';
             document.getElementById('payment').style.display = 'block';
         }
@@ -97,10 +62,51 @@
         function carregarPagamento() {
             alert("Carregando pagamento...");
             setTimeout(() => {
-                // Esconde a página de pagamento e mostra a do eBook
                 document.getElementById('payment').style.display = 'none';
-                document.getElementById('ebook').style.display = 'block';
+                startGame();
             }, 2000); // Simula um carregamento de 2 segundos
+        }
+
+        const words = ["gato", "cachorro", "pato", "carro", "bola"];
+        let selectedWord, displayedWord;
+
+        function startGame() {
+            selectedWord = words[Math.floor(Math.random() * words.length)];
+            displayedWord = "_".repeat(selectedWord.length);
+            document.getElementById('word-to-complete').innerText = displayedWord;
+
+            const letterOptions = "abcdefghijklmnopqrstuvwxyz".split("");
+            document.getElementById('letter-options').innerHTML = letterOptions.map(letter => 
+                `<div class="letter" onclick="guessLetter('${letter}')">${letter}</div>`).join("");
+            document.getElementById('result').innerText = "";
+        }
+
+        function guessLetter(letter) {
+            let newDisplayedWord = "";
+            let correctGuess = false;
+
+            for (let i = 0; i < selectedWord.length; i++) {
+                if (selectedWord[i] === letter) {
+                    newDisplayedWord += letter;
+                    correctGuess = true;
+                } else {
+                    newDisplayedWord += displayedWord[i];
+                }
+            }
+
+            displayedWord = newDisplayedWord;
+            document.getElementById('word-to-complete').innerText = displayedWord;
+
+            if (correctGuess) {
+                document.getElementById('result').innerText = "Acertou uma letra!";
+            } else {
+                document.getElementById('result').innerText = "Letra incorreta. Tente novamente!";
+            }
+
+            if (!displayedWord.includes("_")) {
+                document.getElementById('result').innerText = "Parabéns! Você adivinhou a palavra: " + selectedWord;
+                document.getElementById('letter-options').innerHTML = ""; // Limpa opções de letras
+            }
         }
     </script>
 
