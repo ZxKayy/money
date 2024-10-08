@@ -1,56 +1,108 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roblox Simulation</title>
-    <link rel="stylesheet" href="style.css">
+    <title>eBooks - Autismo</title>
+    <style>
+        body { background-color: #d5f5d5; font-family: Arial, sans-serif; }
+        .container { max-width: 800px; margin: auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; display: none; }
+        h1 { text-align: center; }
+        input { width: 100%; padding: 10px; margin: 10px 0; }
+        button { width: 100%; padding: 10px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        button:hover { background-color: #45a049; }
+        .qr-code { text-align: center; margin: 20px 0; }
+        .ebook-info { margin-top: 20px; text-align: justify; }
+        ul { margin-left: 20px; }
+    </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="logo">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Roblox_logo_2017.svg/1280px-Roblox_logo_2017.svg.png" alt="Roblox Logo">
-            </div>
-            <ul class="nav-links">
-                <li><a href="#">Games</a></li>
-                <li><a href="#">Avatars</a></li>
-                <li><a href="#">Create</a></li>
-                <li><a href="#">Discover</a></li>
-            </ul>
-        </nav>
-        <div class="banner">
-            <h1>Welcome to Roblox</h1>
-            <p>Join millions of players in an endless variety of worlds</p>
+
+    <div id="login" class="container">
+        <h1>Login</h1>
+        <input type="text" id="name" placeholder="Nome" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="password" id="password" placeholder="Senha" required>
+        <button onclick="showPayment()">Registrar</button>
+    </div>
+
+    <div id="payment" class="container">
+        <h1>Pagamento</h1>
+
+        <div class="qr-code">
+            <p>Nome do Pix: Cassiano Totti</p>
+            <img src="https://api.qrserver.com/v1/create-qr-code/?data=00020101021126580014br.gov.bcb.pix01369014b5ec-c2f7-46cb-8e17-9a93b6e61e4b52040000530398654042.005802BR5925CASSIANO TOTTI DE ALMEIDA6009SAO PAULO622905251J9PM4R620GYN7HQKMXCDD7Z7630492F8" alt="QR Code">
+            <p>Escaneie o QR Code para pagar.</p>
         </div>
-    </header>
-    <main>
-        <section class="featured-games">
-            <h2>Featured Games</h2>
-            <div class="game-card">
-                <img src="https://via.placeholder.com/200" alt="Game 1">
-                <h3>Adopt Me!</h3>
-                <p>123K Players</p>
-            </div>
-            <div class="game-card">
-                <img src="https://via.placeholder.com/200" alt="Game 2">
-                <h3>Brookhaven</h3>
-                <p>98K Players</p>
-            </div>
-            <div class="game-card">
-                <img src="https://via.placeholder.com/200" alt="Game 3">
-                <h3>Jailbreak</h3>
-                <p>76K Players</p>
-            </div>
-            <div class="game-card">
-                <img src="https://via.placeholder.com/200" alt="Game 4">
-                <h3>MeepCity</h3>
-                <p>63K Players</p>
-            </div>
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2024 Roblox Simulation</p>
-    </footer>
+
+        <button onclick="carregarPagamento()">Pagar</button>
+    </div>
+
+    <div id="ebook" class="container">
+        <h1>Entendendo o Autismo</h1>
+        <div class="ebook-info">
+            <p>O autismo, também conhecido como Transtorno do Espectro Autista (TEA), é um transtorno do desenvolvimento que afeta a comunicação, o comportamento e a interação social. As características do autismo podem variar amplamente entre os indivíduos, e a compreensão do espectro é fundamental para proporcionar o apoio adequado.</p>
+            
+            <h2>Características do Autismo</h2>
+            <p>As pessoas com autismo podem apresentar uma variedade de comportamentos e habilidades. Algumas características comuns incluem:</p>
+            <ul>
+                <li>Desafios na comunicação verbal e não verbal.</li>
+                <li>Dificuldade em compreender e usar a linguagem corporal.</li>
+                <li>Interesses intensos em tópicos específicos, que podem levar a um conhecimento profundo nessas áreas.</li>
+                <li>Comportamentos repetitivos ou rituais, como movimentos estereotipados ou rotinas diárias rígidas.</li>
+                <li>Hipersensibilidade ou hipossensibilidade a estímulos sensoriais, como luz, som e toques.</li>
+            </ul>
+
+            <h2>Diagnóstico e Intervenção</h2>
+            <p>O diagnóstico do autismo geralmente é feito por profissionais de saúde mental, que avaliam o desenvolvimento da criança e a presença de comportamentos típicos do espectro. A intervenção precoce é crucial e pode incluir terapia comportamental, terapia ocupacional e suporte educacional. O objetivo é ajudar a criança a desenvolver habilidades sociais e de comunicação.</p>
+
+            <h2>Como Lidar com o Autista</h2>
+            <p>É importante adotar abordagens que ajudem a criança a se sentir compreendida e apoiada. Algumas dicas incluem:</p>
+            <ul>
+                <li>Utilizar linguagem clara e direta.</li>
+                <li>Criar um ambiente estruturado com rotinas previsíveis.</li>
+                <li>Ser empático e paciente nas interações.</li>
+            </ul>
+
+            <h2>Educação e Inclusão</h2>
+            <p>A inclusão de estudantes autistas nas escolas é vital para seu desenvolvimento. Métodos pedagógicos adaptados, como o uso de recursos visuais e tecnologias assistivas, podem facilitar o aprendizado. Além disso, promover a empatia e a compreensão entre os colegas é essencial para criar um ambiente escolar acolhedor.</p>
+            <p>Algumas práticas eficazes incluem:</p>
+            <ul>
+                <li>Implementar salas de recursos com profissionais capacitados.</li>
+                <li>Utilizar materiais didáticos que atendam diferentes estilos de aprendizado.</li>
+                <li>Fomentar atividades em grupo que incentivem a socialização e a colaboração.</li>
+            </ul>
+
+            <h2>Apoio Familiar e Comunitário</h2>
+            <p>As famílias desempenham um papel fundamental no suporte a indivíduos autistas. Informar-se sobre o transtorno e buscar redes de apoio pode ajudar a enfrentar os desafios. Grupos de apoio e comunidades online oferecem um espaço para troca de experiências e recursos.</p>
+
+            <h2>Perspectivas Futuras</h2>
+            <p>À medida que a pesquisa sobre o autismo avança, novas abordagens para intervenção e suporte continuam a surgir. A conscientização e a educação são essenciais para desestigmatizar o autismo e promover a aceitação. O objetivo é garantir que todas as pessoas, independentemente de suas diferenças, tenham oportunidades iguais de participação e desenvolvimento.</p>
+            
+            <h2>Conclusão</h2>
+            <p>Entender o autismo é um passo importante para a construção de uma sociedade inclusiva. Cada pessoa no espectro traz uma contribuição única ao mundo, e é responsabilidade de todos nós criar um ambiente que valorize a diversidade e promova o respeito.</p>
+        </div>
+    </div>
+
+    <script>
+        // Mostra a página de login inicialmente
+        document.getElementById('login').style.display = 'block';
+
+        function showPayment() {
+            // Esconde a página de login e mostra a de pagamento
+            document.getElementById('login').style.display = 'none';
+            document.getElementById('payment').style.display = 'block';
+        }
+
+        function carregarPagamento() {
+            alert("Carregando pagamento...");
+            setTimeout(() => {
+                // Esconde a página de pagamento e mostra a do eBook
+                document.getElementById('payment').style.display = 'none';
+                document.getElementById('ebook').style.display = 'block';
+            }, 2000); // Simula um carregamento de 2 segundos
+        }
+    </script>
+
 </body>
 </html>
